@@ -20,3 +20,25 @@ class AuthController with ChangeNotifier {
     notifyListeners();
   }
 }
+
+// screens/dashboard_screen.dart
+// class DashboardScreen extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return ResponsiveLayout(
+//       sidebar: Sidebar(), // Your existing sidebar
+//       content: Padding(
+//         padding: EdgeInsets.all(24),
+//         child: Column(
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           children: [
+//             // Your existing dashboard content...
+//             Text('Dashboard', style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold)),
+//             SizedBox(height: 32),
+//             // Stats grid...
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
