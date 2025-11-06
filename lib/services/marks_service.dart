@@ -37,7 +37,7 @@ class MarksService {
       final existingMarks = await _supabase
           .from('marks')
           .select()
-         //todo: .in_('student_id', students.map((s) => s['id']).toList())
+          .inFilter('student_id', students.map((s) => s['id']).toList())
           .eq('term', term)
           .eq('academic_year', academicYear);
 
@@ -101,6 +101,28 @@ class MarksService {
       await _supabase.from('marks').upsert(markData);
     } catch (e) {
       throw Exception('Failed to save marks: $e');
+    }
+  }
+
+  // services/marks_service.dart - ADD THIS METHOD
+  Future<List<Map<String, dynamic>>> getExistingMarks({
+    required List<String> studentIds,
+    required int term,
+    required int academicYear,
+  }) async {
+    try {
+      if (studentIds.isEmpty) return [];
+
+      final data = await _supabase
+          .from('marks')
+          .select()
+          .inFilter('student_id', studentIds)
+          .eq('term', term)
+          .eq('academic_year', academicYear);
+
+      return data;
+    } catch (e) {
+      throw Exception('Failed to fetch existing marks: $e');
     }
   }
 

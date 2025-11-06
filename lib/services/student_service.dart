@@ -5,6 +5,7 @@ import 'supabase_service.dart';
 class StudentService {
   final _supabase = SupabaseService().client;
 
+// services/student_service.dart - UPDATE GET STUDENTS
   Future<List<Student>> getStudents({
     String? classId,
     String? sectionId,
@@ -12,10 +13,10 @@ class StudentService {
   }) async {
     try {
       dynamic query = _supabase.from('students').select('''
-        *,
-        classes!inner(name),
-        sections(name)
-      ''');
+      *,
+      classes(name),
+      sections(name)
+    ''');
 
       if (classId != null) {
         query = query.eq('class_id', classId);

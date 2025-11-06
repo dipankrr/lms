@@ -1,8 +1,11 @@
 // main.dart
 import 'package:flutter/material.dart';
+import 'package:lms/controllers/marks_controller.dart';
 import 'package:lms/screens/add_student_screen.dart';
 import 'package:lms/screens/classes_screen.dart';
+import 'package:lms/screens/marks_screen.dart';
 import 'package:lms/screens/students_screen.dart';
+import 'package:lms/screens/subjects_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:lms/controllers/auth_controller.dart';
 import 'package:lms/screens/login_screen.dart';
@@ -29,6 +32,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => AuthController()),
         ChangeNotifierProvider(create: (context) => StudentController()),
+        ChangeNotifierProvider(create: (context) => MarksController()),
         // Add other controllers here
       ],
       child: MaterialApp(
@@ -47,8 +51,8 @@ class MyApp extends StatelessWidget {
           '/students': (context) => StudentsScreen(),
           '/add-student': (context) => AddStudentScreen(),
           '/classes': (context) => ClassesScreen(),
-          //'/subjects': (context) => SubjectsScreen(),
-          //'/marks': (context) => MarksScreen(),
+          '/subjects': (context) => SubjectsScreen(),
+          '/marks': (context) => MarksScreen(),
           //'/id-cards': (context) => IdCardScreen(),
           //'/admit-cards': (context) => AdmitCardScreen(),
           //'/results': (context) => ResultsScreen(),

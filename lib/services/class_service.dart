@@ -1,5 +1,5 @@
 // services/class_service.dart
-import '../models/class_model.dart';
+import 'package:lms/models/class_model.dart';
 import 'supabase_service.dart';
 
 class ClassService {
@@ -11,17 +11,10 @@ class ClassService {
           .from('classes')
           .select()
           .order('order_index');
+
       return data.map<SchoolClass>((json) => SchoolClass.fromMap(json)).toList();
     } catch (e) {
       throw Exception('Failed to fetch classes: $e');
-    }
-  }
-
-  Future<void> addClass(SchoolClass schoolClass) async {
-    try {
-      await _supabase.from('classes').insert(schoolClass.toMap());
-    } catch (e) {
-      throw Exception('Failed to add class: $e');
     }
   }
 
@@ -32,9 +25,18 @@ class ClassService {
           .select()
           .eq('class_id', classId)
           .order('order_index');
+
       return data.map<Section>((json) => Section.fromMap(json)).toList();
     } catch (e) {
       throw Exception('Failed to fetch sections: $e');
+    }
+  }
+
+  Future<void> addClass(SchoolClass schoolClass) async {
+    try {
+      await _supabase.from('classes').insert(schoolClass.toMap());
+    } catch (e) {
+      throw Exception('Failed to add class: $e');
     }
   }
 
