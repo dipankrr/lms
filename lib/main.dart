@@ -1,59 +1,80 @@
-// main.dart
 import 'package:flutter/material.dart';
-import 'package:lms/screens/add_student_screen.dart';
-import 'package:lms/screens/classes_screen.dart';
-import 'package:lms/screens/students_screen.dart';
+import 'package:lms/screens/auth/login_screen.dart';
 import 'package:provider/provider.dart';
-import 'package:lms/controllers/auth_controller.dart';
-import 'package:lms/screens/login_screen.dart';
-import 'package:lms/screens/dashboard_screen.dart';
-import 'controllers/student_controller.dart';
-import 'package:lms/services/supabase_service.dart';
+import 'core/constants/app_colors.dart';
+import 'core/constants/app_text_styles.dart';
+import 'core/utils/responsive_utils.dart';
 
-// Update main.dart with all routes
-
-
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
-  // ✅ Initialize Supabase before runApp()
-  await SupabaseService().initialize();
-
-  runApp(MyApp());
+void main() {
+  runApp(const StudentManagementApp());
 }
 
-class MyApp extends StatelessWidget {
+class StudentManagementApp extends StatelessWidget {
+  const StudentManagementApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (context) => AuthController()),
-        ChangeNotifierProvider(create: (context) => StudentController()),
-        // Add other controllers here
-      ],
-      child: MaterialApp(
-        title: 'Student Management',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          useMaterial3: true,
+    return MaterialApp(
+      title: 'Student Management System',
+      theme: _buildTheme(),
+      debugShowCheckedModeBanner: false,
+      home: const LoginScreen(), // Temporary placeholder
+    );
+  }
+
+  ThemeData _buildTheme() {
+    return ThemeData(
+      primarySwatch: Colors.blue,
+      scaffoldBackgroundColor: AppColors.background,
+      appBarTheme: const AppBarTheme(
+        backgroundColor: AppColors.primary,
+        foregroundColor: Colors.white,
+        elevation: 0,
+        centerTitle: true,
+      ),
+      inputDecorationTheme: InputDecorationTheme(
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(color: AppColors.border),
         ),
-        home: Consumer<AuthController>(
-          builder: (context, auth, child) {
-            return auth.isLoggedIn ? DashboardScreen() : LoginScreen();
-          },
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(color: AppColors.border),
         ),
-        routes: {
-          '/dashboard': (context) => DashboardScreen(),
-          '/students': (context) => StudentsScreen(),
-          '/add-student': (context) => AddStudentScreen(),
-          '/classes': (context) => ClassesScreen(),
-          //'/subjects': (context) => SubjectsScreen(),
-          //'/marks': (context) => MarksScreen(),
-          //'/id-cards': (context) => IdCardScreen(),
-          //'/admit-cards': (context) => AdmitCardScreen(),
-          //'/results': (context) => ResultsScreen(),
-        },
-        debugShowCheckedModeBanner: false,
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(color: AppColors.primary),
+        ),
+      ),
+    );
+  }
+}
+
+// Temporary placeholder screen until we build LoginScreen
+class PlaceholderScreen extends StatelessWidget {
+  const PlaceholderScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Student Management System'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'App Setup Complete!',
+              style: AppTextStyles.headlineLarge(context),
+            ),
+            const SizedBox(height: 20),
+            Text(
+              'Ready to build Login Screen',
+              style: AppTextStyles.bodyMedium(context),
+            ),
+          ],
+        ),
       ),
     );
   }

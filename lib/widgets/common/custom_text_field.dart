@@ -1,0 +1,94 @@
+import 'package:flutter/material.dart';
+import '../../core/constants/app_colors.dart';
+import '../../core/constants/app_text_styles.dart';
+import '../../core/utils/responsive_utils.dart';
+
+class CustomTextField extends StatelessWidget {
+  final TextEditingController? controller;
+  final String label;
+  final String hint;
+  final IconData? prefixIcon;
+  final IconData? suffixIcon;
+  final bool obscureText;
+  final TextInputType? keyboardType;
+  final String? Function(String?)? validator;
+  final VoidCallback? onSuffixTap;
+  final int? maxLines;
+
+  const CustomTextField({
+    super.key,
+    this.controller,
+    required this.label,
+    required this.hint,
+    this.prefixIcon,
+    this.suffixIcon,
+    this.obscureText = false,
+    this.keyboardType,
+    this.validator,
+    this.onSuffixTap,
+    this.maxLines = 1,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final fieldHeight = maxLines == 1
+        ? ResponsiveUtils.responsiveValue(context, 48.0, 52.0, 56.0)
+        : null;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          label,
+          style: AppTextStyles.bodyMedium(context)!.copyWith(
+            fontWeight: FontWeight.w500,
+            color: AppColors.textPrimary,
+          ),
+        ),
+        const SizedBox(height: 8),
+        SizedBox(
+          height: fieldHeight,
+          child: TextFormField(
+            controller: controller,
+            obscureText: obscureText,
+            keyboardType: keyboardType,
+            cursorColor: Colors.blue,
+            validator: validator,
+            maxLines: maxLines,
+            style: AppTextStyles.bodyMedium(context),
+            decoration: InputDecoration(
+              filled: true, fillColor: Colors.grey[100], //added by me
+              hintText: hint,
+              hintStyle: AppTextStyles.bodyMedium(context)!.copyWith(
+                color: AppColors.textSecondary,
+              ),
+              prefixIcon: prefixIcon != null
+                  ? Icon(
+                prefixIcon,
+                size: ResponsiveUtils.responsiveValue(context, 20.0, 22.0, 24.0),
+                color: AppColors.textSecondary,
+              )
+                  : null,
+              suffixIcon: suffixIcon != null
+                  ? GestureDetector(
+                onTap: onSuffixTap,
+                child: Icon(
+                  suffixIcon,
+                  size: ResponsiveUtils.responsiveValue(context, 20.0, 22.0, 24.0),
+                  color: AppColors.textSecondary,
+                ),
+              )
+                  : null,
+              contentPadding: EdgeInsets.symmetric(
+                horizontal: ResponsiveUtils.responsiveValue(context, 12.0, 16.0, 20.0),
+                vertical: maxLines == 1
+                    ? ResponsiveUtils.responsiveValue(context, 12.0, 14.0, 16.0)
+                    : 16.0,
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
