@@ -3,6 +3,7 @@ import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_text_styles.dart';
 import '../../widgets/common/adaptive_button.dart';
 import '../../widgets/common/custom_text_field.dart';
+import '../dashboard/dashboard_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -27,7 +28,12 @@ class _LoginScreenState extends State<LoginScreen> {
 
     if (_usernameController.text == "admin" &&
         _passwordController.text == "admin123") {
-      // TODO: Navigate to Dashboard
+      // TODO: Navigate to
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => const DashboardScreen(),
+        ),
+      );
       _showSuccess('Login Successful!');
     } else {
       _showError('Invalid credentials! Use admin/admin123');

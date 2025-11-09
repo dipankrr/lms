@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lms/screens/auth/login_screen.dart';
+import 'package:lms/screens/dashboard/dashboard_screen.dart';
 import 'package:provider/provider.dart';
 import 'core/constants/app_colors.dart';
 import 'core/constants/app_text_styles.dart';
@@ -18,7 +19,7 @@ class StudentManagementApp extends StatelessWidget {
       title: 'Student Management System',
       theme: _buildTheme(),
       debugShowCheckedModeBanner: false,
-      home: const LoginScreen(), // Temporary placeholder
+      home: const DashboardScreen(), // Temporary placeholder
     );
   }
 
