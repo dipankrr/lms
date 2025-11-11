@@ -47,6 +47,7 @@ class AdaptiveButton extends StatelessWidget {
         child: OutlinedButton(
           onPressed: onPressed,
           style: OutlinedButton.styleFrom(
+            //backgroundColor: ,
             padding: buttonPadding,
             side: BorderSide(color: AppColors.primary),
             shape: RoundedRectangleBorder(

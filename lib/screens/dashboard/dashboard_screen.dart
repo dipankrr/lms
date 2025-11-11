@@ -5,6 +5,7 @@ import '../../widgets/cards/stats_card.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_text_styles.dart';
 import '../../core/utils/responsive_utils.dart';
+import '../students/students_list_screen.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
@@ -133,7 +134,11 @@ class DashboardScreen extends StatelessWidget {
               'Students',
               Icons.people_outline,
               Colors.blue,
-                  () => _navigateTo(context, 'students'),
+                  () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const StudentsListScreen(),
+                ),
+              ),
             ),
             _buildActionCard(
               context,

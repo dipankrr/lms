@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lms/providers/student_provider.dart';
 import 'package:lms/screens/auth/login_screen.dart';
 import 'package:lms/screens/dashboard/dashboard_screen.dart';
 import 'package:provider/provider.dart';
@@ -15,11 +16,16 @@ class StudentManagementApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Student Management System',
-      theme: _buildTheme(),
-      debugShowCheckedModeBanner: false,
-      home: const DashboardScreen(), // Temporary placeholder
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => StudentProvider()),
+      ],
+      child: MaterialApp(
+        title: 'Student Management System',
+        theme: _buildTheme(),
+        debugShowCheckedModeBanner: false,
+        home: const DashboardScreen(),
+      ),
     );
   }
 
