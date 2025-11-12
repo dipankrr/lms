@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lms/screens/students/add_edit_student_screen.dart';
 import 'package:provider/provider.dart';
 import '../../widgets/common/custom_app_bar.dart';
 import '../../widgets/common/adaptive_button.dart';
@@ -189,11 +190,10 @@ class _StudentsListScreenState extends State<StudentsListScreen> {
         ),
         AdaptiveButton(
           onPressed: () {
-            // TODO: Navigate to Add Student Screen
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Add Student - Coming Soon!'),
-                backgroundColor: AppColors.primary,
+            // Navigate to Add Student Screen
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => const AddEditStudentScreen(),
               ),
             );
           },
@@ -254,10 +254,9 @@ class _StudentsListScreenState extends State<StudentsListScreen> {
         return StudentCard(
           student: student,
           onTap: () {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text('Edit ${student.name} - Coming Soon!'),
-                backgroundColor: AppColors.primary,
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => AddEditStudentScreen(student: student),
               ),
             );
           },

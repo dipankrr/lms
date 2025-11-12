@@ -6,8 +6,8 @@ class SupabaseService {
   // Initialize Supabase (we'll call this later)
   static Future<void> initialize() async {
     await Supabase.initialize(
-      url: 'YOUR_SUPABASE_URL', // Will be configured later
-      anonKey: 'YOUR_SUPABASE_ANON_KEY', // Will be configured later
+      url: 'https://oopkltlrlnlapqdfjemy.supabase.co', // Will be configured later
+      anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9vcGtsdGxybG5sYXBxZGZqZW15Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIxODc0MTAsImV4cCI6MjA3Nzc2MzQxMH0.8bS4uCkY1axCsYYJ4oAxlmdC4d10Rdm461xgzYkQCDQ', // Will be configured later
     );
   }
 

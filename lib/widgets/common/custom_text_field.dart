@@ -38,14 +38,17 @@ class CustomTextField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          label,
-          style: AppTextStyles.bodyMedium(context)!.copyWith(
-            fontWeight: FontWeight.w500,
-            color: AppColors.textPrimary,
+        Padding(
+          padding: const EdgeInsets.only(left: 4),
+          child: Text(
+            label,
+            style: AppTextStyles.bodyMedium(context)!.copyWith(
+              fontWeight: FontWeight.w600,
+              color: AppColors.textPrimary.withOpacity(0.6),
+            ),
           ),
         ),
-        const SizedBox(height: 8),
+        const SizedBox(height: 6),
         SizedBox(
           height: fieldHeight,
           child: TextFormField(
@@ -55,12 +58,16 @@ class CustomTextField extends StatelessWidget {
             cursorColor: Colors.blue,
             validator: validator,
             maxLines: maxLines,
-            style: AppTextStyles.bodyMedium(context),
+            style: AppTextStyles.bodyMedium(context).copyWith(
+              fontWeight: FontWeight.w700
+            ),
             decoration: InputDecoration(
               filled: true, fillColor: Colors.grey[100], //added by me
               hintText: hint,
               hintStyle: AppTextStyles.bodyMedium(context)!.copyWith(
                 color: AppColors.textSecondary,
+                fontWeight: FontWeight.w300
+                //fontWeight: FontWeight.w700
               ),
               prefixIcon: prefixIcon != null
                   ? Icon(

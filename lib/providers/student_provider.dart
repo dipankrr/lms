@@ -183,7 +183,7 @@ class StudentProvider with ChangeNotifier {
     _setLoading(true);
     try {
       // TODO: Replace with actual Supabase call
-      // await SupabaseService.insertData('students', student.toMap());
+       await SupabaseService.insertData('students', student.toMap());
       await _loadStudents(); // Reload students
     } catch (e) {
       _error = 'Failed to add student: $e';
